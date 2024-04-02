@@ -1,7 +1,7 @@
 
 import { GifGrilItem } from './GifGrilItem'
 import { useEffectGifs } from '../hooks/useEffectGifs';
-
+import PropTypes from "prop-types";
 export const GifGrid = ({category}) => {
 
   const {images,isLoading} = useEffectGifs( category );
@@ -46,4 +46,8 @@ export const GifGrid = ({category}) => {
         </div>
     </>
   )
+}
+
+GifGrid.propTypes ={
+  category: PropTypes.string.isRequired,
 }

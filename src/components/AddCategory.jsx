@@ -1,30 +1,25 @@
 
 
 import React, { useState } from 'react'
-
+import PropTypes from "prop-types";
 export const AddCategory = ({onNewCategory}) => {
 
     const [inputValue, setInputValue] = useState('')
 
-    /* const onInputChange = (event) => {
-        console.log(event.target.value)
-        setInputValue(event.target.value)
-    } */
     const onInputChange = ({target}) => {
-       // console.log(target.value)
         setInputValue(target.value)
     }
     const onSubmit = (event) => {
+       // console.log('Hola mundo desde submit')
         event.preventDefault(); //Evita que recarge la pagina al presionar enter
         console.log(inputValue);
         const inputClean = inputValue.trim();
         if( inputClean.trim().length <= 1) return;
-       // setCategories(cat =>[ ...cat,inputValue]);
-       onNewCategory(inputClean)
-       setInputValue('');
+        onNewCategory(inputClean)
+        setInputValue('');
      }
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} aria-label="form">
         <input
             type="text"
             placeholder='Buscar gifs'
@@ -34,4 +29,8 @@ export const AddCategory = ({onNewCategory}) => {
         />
     </form>
   )
+}
+
+AddCategory.propTypes = {
+    onNewCategory: PropTypes.func.isRequired,
 }
